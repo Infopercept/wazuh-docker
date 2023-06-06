@@ -71,6 +71,10 @@ RUN mkdir -p /var/lib/wazuh-indexer && chown 1000:1000 /var/lib/wazuh-indexer &&
 
 USER wazuh-indexer
 
+# Install Plugins
+RUN /usr/share/wazuh-indexer/bin/opensearch-plugin install repository-s3 -b
+RUN /usr/share/wazuh-indexer/bin/opensearch-plugin install repository-gcs -b
+
 # Services ports
 EXPOSE 9200
 
