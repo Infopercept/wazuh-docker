@@ -34,6 +34,7 @@ RUN curl --fail --silent -L https://github.com/just-containers/s6-overlay/releas
     rm  /tmp/s6-overlay-amd64.tar.gz
 
 COPY config/etc/ /etc/
+COPY config/worker.conf /var/ossec/etc/ossec.conf
 COPY --chown=root:wazuh config/create_user.py /var/ossec/framework/scripts/create_user.py
 
 COPY config/filebeat.yml /etc/filebeat/

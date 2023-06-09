@@ -22,6 +22,7 @@ services:
       - API_USERNAME=wazuh-wui
       - API_PASSWORD=MyS3cr37P450r.*-
     volumes:
+      - wazuh_ruleset:/var/ossec/ruleset
       - wazuh_api_configuration:/var/ossec/api/configuration
       - wazuh_etc:/var/ossec/etc
       - wazuh_logs:/var/ossec/logs
@@ -45,6 +46,8 @@ services:
     ports:
       - "9200:9200"
     environment:
+      - S3_ACCESS_KEY=test
+      - S3_SECRET_KEY=test
       - "OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m"
     ulimits:
       memlock:
