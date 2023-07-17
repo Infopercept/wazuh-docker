@@ -14,4 +14,4 @@ echo WAZUH_VERSION=$WAZUH_IMAGE_VERSION > .env
 echo WAZUH_IMAGE_VERSION=$IMAGE_VERSION >> .env
 echo WAZUH_TAG_REVISION=$WAZUH_TAG_REVISION >> .env
 
-docker-compose -f build-docker-images/build-images.yml --env-file .env build --no-cache
+docker compose -f build-docker-images/build-images.yml --env-file .env build --no-cache

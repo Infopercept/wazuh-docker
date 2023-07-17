@@ -33,6 +33,16 @@ RUN curl --fail --silent -L https://github.com/just-containers/s6-overlay/releas
     tar xzf /tmp/s6-overlay-amd64.tar.gz -C /usr ./bin && \
     rm  /tmp/s6-overlay-amd64.tar.gz
 
+# Installing AWS CLI
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+RUN apt install unzip
+RUN unzip awscliv2.zip
+RUN ./aws/install
+RUN apt remove unzip -y
+
+# Install BOTO3
+RUN /var/ossec/framework/python/bin/pip3 install boto3
+
 COPY config/etc/ /etc/
 COPY config/worker.conf /var/ossec/etc/ossec.conf
 COPY --chown=root:wazuh config/create_user.py /var/ossec/framework/scripts/create_user.py
@@ -54,6 +64,9 @@ RUN chmod 755 /permanent_data.sh && \
 
 # Adding custom ossec.conf for K8S
 COPY config/worker.conf /var/ossec/etc/ossec.conf
+
+# Adding OKTA Log Fetching Data Flow python file
+COPY --chown=root:wazuh config/oktalogsfetcher.py /var/ossec/integrations/oktalogsfetcher.py
 
 # Services ports
 EXPOSE 55000/tcp 1514/tcp 1515/tcp 514/udp 1516/tcp

@@ -121,18 +121,18 @@ if [[ -n "$S3_ACCESS_KEY" && -n "$S3_SECRET_KEY" ]]; then
 fi
 
 # Stores json file of snapshot repository for Google Cloud Storage
-if [[ -f "/usr/share/wazuh-indexer/gcs-service-account.json" ]]; then
+if [[ -f "/usr/share/wazuh-indexer/gcs-creds/gcs-service-account.json" ]]; then
   if ! (run_as_other_user_if_needed ./bin/opensearch-keystore has-passwd --silent) ; then
     [[ -f /usr/share/wazuh-indexer/opensearch.keystore ]] || (run_as_other_user_if_needed ./bin/opensearch-keystore create)
     # keystore is unencrypted
     if ! (run_as_other_user_if_needed ./bin/opensearch-keystore list | grep -q '^gcs.client.default.credentials_file$'); then
-      ./bin/opensearch-keystore add-file gcs.client.default.credentials_file /usr/share/wazuh-indexer/gcs-service-account.json
+      ./bin/opensearch-keystore add-file gcs.client.default.credentials_file /usr/share/wazuh-indexer/gcs-creds/gcs-service-account.json
     fi
   else
     # keystore requires password
     if ! (run_as_other_user_if_needed echo "$KEYSTORE_PASSWORD" \
         | ./bin/opensearch-keystore list | grep -q '^gcs.client.default.credentials_file$') ; then
-      (run_as_other_user_if_needed echo "$KEYSTORE_PASSWORD" | ./bin/opensearch-keystore add-file gcs.client.default.credentials_file /usr/share/wazuh-indexer/gcs-service-account.json)
+      (run_as_other_user_if_needed echo "$KEYSTORE_PASSWORD" | ./bin/opensearch-keystore add-file gcs.client.default.credentials_file /usr/share/wazuh-indexer/gcs-creds/gcs-service-account.json)
     fi
   fi
 fi
