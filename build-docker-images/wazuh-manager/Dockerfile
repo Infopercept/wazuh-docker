@@ -65,9 +65,6 @@ RUN chmod 755 /permanent_data.sh && \
 # Adding custom ossec.conf for K8S
 COPY config/worker.conf /var/ossec/etc/ossec.conf
 
-# Adding OKTA Log Fetching Data Flow python file
-COPY --chown=root:wazuh config/oktalogsfetcher.py /var/ossec/integrations/oktalogsfetcher.py
-
 # Services ports
 EXPOSE 55000/tcp 1514/tcp 1515/tcp 514/udp 1516/tcp
 

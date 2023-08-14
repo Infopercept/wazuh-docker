@@ -112,6 +112,9 @@ function_entrypoint_scripts() {
   fi
 }
 
+# Adding permissions to all integrations scripts
+chown root:wazuh /var/ossec/integrations/*
+chmod 550 /var/ossec/integrations/*
 
 # Migrate data from /wazuh-migration volume
 function_wazuh_migration
