@@ -1,0 +1,4 @@
+#!/usr/bin/with-contenv bash
+echo >&1 "Fetching 1Password logs"
+
+exec s6-setuidgid root /var/ossec/framework/python/bin/python3 /var/ossec/etc/1pass-logs.py

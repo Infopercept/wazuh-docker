@@ -65,6 +65,13 @@ RUN chmod 755 /permanent_data.sh && \
 # Adding custom ossec.conf for K8S
 COPY config/worker.conf /var/ossec/etc/ossec.conf
 
+# 1Password logs fetcher
+COPY config/1pass-config.properties /var/ossec/etc/
+COPY config/1pass-logs.py /var/ossec/etc/
+
+# Depentancy for log fetcher API purpose
+RUN /var/ossec/framework/python/bin/pip3 install requests configparser
+
 # Services ports
 EXPOSE 55000/tcp 1514/tcp 1515/tcp 514/udp 1516/tcp
 
