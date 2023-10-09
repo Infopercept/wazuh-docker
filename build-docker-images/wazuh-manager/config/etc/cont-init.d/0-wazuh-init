@@ -176,7 +176,7 @@ set_custom_cluster_key() {
 
 set_pagerduty_api() {
   if [ -n "${PAGERDUTY_KEY}" ]; then
-    sed -i 's/<api_key>API_KEY<\/api_key>/<key>'"${PAGERDUTY_KEY}"'<\/key>/g' ${WAZUH_INSTALL_PATH}/etc/ossec.conf
+    sed -i 's/<api_key>API_KEY<\/api_key>/<api_key>'"${PAGERDUTY_KEY}"'<\/api_key>/g' ${WAZUH_INSTALL_PATH}/etc/ossec.conf
   else
     echo "PAGERDUTY_KEY is not set. Please set it before running this script."
   fi
