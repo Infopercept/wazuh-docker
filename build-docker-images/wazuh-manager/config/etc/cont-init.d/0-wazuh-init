@@ -188,7 +188,7 @@ set_pagerduty_api() {
 
 set_hook_url_api() {
   if [ -n "${HOOK_URL}" ]; then
-    sed -i 's/<hook_url>HOOK_URL<\/hook_url>/<hook_url>'"${HOOK_URL}"'<\/hook_url>/g' ${WAZUH_INSTALL_PATH}/etc/ossec.conf
+    sed -i 's#<hook_url>HOOK_URL</hook_url>#<hook_url>'"${HOOK_URL}"'</hook_url>#g' ${WAZUH_INSTALL_PATH}/etc/ossec.conf
   else
     echo "HOOK_URL is not set. Please set it before running this script."
   fi

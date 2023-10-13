@@ -10,7 +10,7 @@ ARG FILEBEAT_CHANNEL=filebeat-oss
 ARG FILEBEAT_VERSION=7.10.2
 ARG WAZUH_FILEBEAT_MODULE="wazuh-filebeat-0.2.tar.gz"
 
-RUN apt-get update && apt install curl apt-transport-https lsb-release gnupg -y
+RUN apt-get update && apt install curl apt-transport-https lsb-release gnupg python3-pip -y
 
 COPY config/check_repository.sh /
 
@@ -19,6 +19,8 @@ RUN source /check_repository.sh
 
 RUN apt-get update && \
     apt-get install wazuh-manager=${WAZUH_VERSION}-${WAZUH_TAG_REVISION}
+
+RUN pip3 install requests configparser
 
 RUN curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/${FILEBEAT_CHANNEL}-${FILEBEAT_VERSION}-amd64.deb &&\
     dpkg -i ${FILEBEAT_CHANNEL}-${FILEBEAT_VERSION}-amd64.deb && rm -f ${FILEBEAT_CHANNEL}-${FILEBEAT_VERSION}-amd64.deb && \
@@ -64,6 +66,14 @@ RUN chmod 755 /permanent_data.sh && \
 
 # Adding custom ossec.conf for K8S
 COPY config/master.conf /var/ossec/etc/ossec.conf
+
+# 1pass logs Fetcher
+COPY config/1pass-config.properties     /var/ossec/etc
+COPY config/1pass-logs.py       /var/ossec/etc
+
+# Okta logs Fetcher
+COPY config/okta-config.properties /var/ossec/etc
+COPY config/oktalogs.py /var/ossec/etc
 
 # Copying Slack script into integrations
 COPY ./config/integrations/custom-slack.py /var/ossec/integrations/custom-slack.py
