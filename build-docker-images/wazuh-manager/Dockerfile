@@ -68,12 +68,12 @@ RUN chmod 755 /permanent_data.sh && \
 COPY config/master.conf /var/ossec/etc/ossec.conf
 
 # 1pass logs Fetcher
-COPY config/1pass-config.properties     /var/ossec/etc
-COPY config/1pass-logs.py       /var/ossec/etc
+COPY config/integrations/1pass-config.properties     /var/ossec/integrations/
+COPY config/integrations/1pass-logs.py       /var/ossec/integrations/
 
 # Okta logs Fetcher
-COPY config/okta-config.properties /var/ossec/etc
-COPY config/oktalogs.py /var/ossec/etc
+COPY config/integrations/okta-config.properties /var/ossec/integrations/
+COPY config/integrations/oktalogs.py /var/ossec/integrations/
 
 # Copying Slack script into integrations
 COPY ./config/integrations/custom-slack.py /var/ossec/integrations/custom-slack.py

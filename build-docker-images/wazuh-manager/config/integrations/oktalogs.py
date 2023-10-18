@@ -125,7 +125,7 @@ def write_to_file(json_data):
 ################################# Driver code
 try:
     config = configparser.RawConfigParser()
-    config.readfp(open('/var/ossec/etc/okta-config.properties'))
+    config.readfp(open('/var/ossec/integrations/okta-config.properties'))
     org = config.get("Config", "org")
 #    token = config.get("Config", "token")
     rest_record_limit = int(config.get("Config", "restRecordLimit"))

@@ -18,7 +18,7 @@ logger.setLevel(logging.DEBUG)
 ########## 1PASSWORD CONFIG DATA #######################
 try:
     config = configparser.RawConfigParser()
-    config.read('/var/ossec/etc/1pass-config.properties')
+    config.read('/var/ossec/integrations/1pass-config.properties')
 #    token = config.get("Config", "token")
     base_url = config.get("Config", "baseUrl")
     sleep_time = int(config.get("Config", "sleepTime"))
