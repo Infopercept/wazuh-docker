@@ -126,7 +126,7 @@ def write_to_file(json_data):
 try:
     config = configparser.RawConfigParser()
     config.readfp(open('/var/ossec/integrations/okta-config.properties'))
-    org = config.get("Config", "org")
+#    org = config.get("Config", "org")
 #    token = config.get("Config", "token")
     rest_record_limit = int(config.get("Config", "restRecordLimit"))
     sleep_time = config.get("Config","sleepTime")
@@ -134,8 +134,14 @@ except:
     print("[Error] okta-config.properties file not found or parsing error")
 
 token = os.getenv("OKTA_API_KEY")
+org = os.getenv("OKTA_ORG")
+
 if token and  len(token) < 0:
-    print("Unable to get token env")
+    print("Unable to get OKTA_TOKEN env")
+    exit(1)
+
+if org and len(org) < 0:
+    print("Unable to get OKTA_ORG env")
     exit(1)
 
 print(get_logs(org, token, rest_record_limit, sleep_time))

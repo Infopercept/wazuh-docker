@@ -79,6 +79,16 @@ COPY config/integrations/oktalogs.py /var/ossec/integrations/
 COPY ./config/integrations/custom-slack.py /var/ossec/integrations/custom-slack.py
 COPY ./config/integrations/custom-slack /var/ossec/integrations/custom-slack
 
+# StrongDM
+RUN apt install unzip
+RUN curl -L https://app.strongdm.com/releases/cli/linux -o /var/ossec/integrations/sdm.zip
+RUN unzip /var/ossec/integrations/sdm.zip -d /var/ossec/integrations/
+RUN rm -rf /var/ossec/integrations/sdm.zip
+RUN apt remove unzip -y
+RUN chmod +xr /var/ossec/integrations/sdm
+COPY config/integrations/sdm-logs.sh /var/ossec/integrations/sdm-logs.sh
+RUN chmod +xr /var/ossec/integrations/sdm-logs.sh
+
 # Services ports
 EXPOSE 55000/tcp 1514/tcp 1515/tcp 514/udp 1516/tcp
 
