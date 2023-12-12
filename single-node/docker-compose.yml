@@ -12,9 +12,9 @@ services:
       - "514:514/udp"
       - "55000:55000"
     environment:
-      - OKTA_API_KEY=00ESGAxZE-jiqBYn_Zmov1ihtDNJx141cUsDjZhiwG
-      - OKTA_ORG=yugabyte
-      - ONEPASS_API_KEY=eyJhbGciOiJFUzI1NiIsImtpZCI6IjV3ZnVsYmZlZXlkangzcm5nNGN3djNpbWJpIiwidHlwIjoiSldUIn0.eyIxcGFzc3dvcmQuY29tL2F1dWlkIjoiTVdVSEJUU05DSkRISEFaR0JXQklCRzNLM0UiLCIxcGFzc3dvcmQuY29tL2Z0cyI6WyJzaWduaW5hdHRlbXB0cyIsIml0ZW11c2FnZXMiLCJhdWRpdGV2ZW50cyJdLCJhdWQiOlsiZXZlbnRzLjFwYXNzd29yZC5jb20iXSwic3ViIjoiR1c2Q0s2U0hIUkFZUFBIVlRUSjZFS1JTV1kiLCJpYXQiOjE2OTAyMDQ4MDAsImlzcyI6ImNvbS4xcGFzc3dvcmQuYjUiLCJqdGkiOiJiYWd1aXVnYnhtNDZzbGNpenVjYmF1NnRjcSJ9.J_mo7mU62KP2gwD2_Prnj-6KBEOv0EhvhNiV8Y39Nk_LNniPHhvONfVGvCmYfdD99rZhHAPp9wbwtu6zM2Gxbw
+      - OKTA_API_KEY=1
+      - OKTA_ORG=1
+      - ONEPASS_API_KEY=1
       - INDEXER_URL=https://wazuh.indexer:9200
       - INDEXER_USERNAME=admin
       - INDEXER_PASSWORD=SecretPassword
