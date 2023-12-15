@@ -8,42 +8,8 @@ services:
       args:
         WAZUH_VERSION: ${WAZUH_VERSION}
         WAZUH_TAG_REVISION: ${WAZUH_TAG_REVISION}
-        FILEBEAT_TEMPLATE_BRANCH: ${FILEBEAT_TEMPLATE_BRANCH}
-        WAZUH_FILEBEAT_MODULE: ${WAZUH_FILEBEAT_MODULE}
     image: wazuh/wazuh-manager:${WAZUH_IMAGE_VERSION}
     hostname: wazuh.manager
-    restart: always
-    ports:
-      - "1514:1514"
-      - "1515:1515"
-      - "514:514/udp"
-      - "55000:55000"
-    environment:
-      - INDEXER_URL=https://wazuh.indexer:9200
-      - INDEXER_USERNAME=admin
-      - INDEXER_PASSWORD=admin
-      - FILEBEAT_SSL_VERIFICATION_MODE=none
-    volumes:
-      - wazuh_api_configuration:/var/ossec/api/configuration
-      - wazuh_etc:/var/ossec/etc
-      - wazuh_logs:/var/ossec/logs
-      - wazuh_queue:/var/ossec/queue
-      - wazuh_var_multigroups:/var/ossec/var/multigroups
-      - wazuh_integrations:/var/ossec/integrations
-      - wazuh_active_response:/var/ossec/active-response/bin
-      - wazuh_agentless:/var/ossec/agentless
-      - wazuh_wodles:/var/ossec/wodles
-      - filebeat_etc:/etc/filebeat
-      - filebeat_var:/var/lib/filebeat
-
-  wazuh.worker:
-    build:
-      context: wazuh-worker/
-      args:
-        WAZUH_VERSION: ${WAZUH_VERSION}
-        WAZUH_TAG_REVISION: ${WAZUH_TAG_REVISION}
-    image: wazuh/wazuh-worker:${WAZUH_IMAGE_VERSION}
-    hostname: wazuh.worker
     restart: always
     ports:
       - "1514:1514"
@@ -95,7 +61,6 @@ services:
       args:
         WAZUH_VERSION: ${WAZUH_VERSION}
         WAZUH_TAG_REVISION: ${WAZUH_TAG_REVISION}
-        WAZUH_UI_REVISION: ${WAZUH_UI_REVISION}
     image: wazuh/wazuh-dashboard:${WAZUH_IMAGE_VERSION}
     hostname: wazuh.dashboard
     restart: always
