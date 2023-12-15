@@ -54,7 +54,7 @@ _config_exists=$?
 if [[ $_config_exists -ne 0 ]]; then
 cat << EOF >> $dashboard_config_file
 hosts:
-  - 1513629884013:
+  - default:
       url: $wazuh_url
       port: $wazuh_port
       username: $api_username
