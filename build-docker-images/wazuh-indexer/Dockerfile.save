@@ -58,6 +58,7 @@ COPY --from=builder --chown=1000:1000 /debian/wazuh-indexer/usr/share/wazuh-inde
 COPY --from=builder --chown=0:0 /debian/wazuh-indexer/usr/lib/systemd /usr/lib/systemd
 COPY --from=builder --chown=0:0 /debian/wazuh-indexer/usr/lib/sysctl.d /usr/lib/sysctl.d
 COPY --from=builder --chown=0:0 /debian/wazuh-indexer/usr/lib/tmpfiles.d /usr/lib/tmpfiles.d
+COPY config/aws.json /usr/share/wazuh-indexer/aws.json
 
 RUN chown -R 1000:1000 /usr/share/wazuh-indexer
 
@@ -74,6 +75,10 @@ USER wazuh-indexer
 # Install Plugins
 RUN /usr/share/wazuh-indexer/bin/opensearch-plugin install repository-s3 -b
 RUN /usr/share/wazuh-indexer/bin/opensearch-plugin install repository-gcs -b
+
+WORKDIR
+
+RUN ./bin/opensearch-keystore add-file aws /usr/share/wazuh-indexer/aws.json
 
 # Services ports
 EXPOSE 9200

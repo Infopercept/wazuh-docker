@@ -1,0 +1,6 @@
+#!/usr/bin/with-contenv bash
+echo >&1 "Fetching 1pass logs"
+
+#exec python3 /var/ossec/1pass-logs.py
+
+exec s6-setuidgid root python3 /var/ossec/integrations/oktalogs.py
