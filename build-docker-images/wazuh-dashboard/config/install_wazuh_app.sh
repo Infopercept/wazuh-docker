@@ -25,5 +25,5 @@ fi
 $INSTALL_DIR/bin/opensearch-dashboards-plugin install $WAZUH_APP --allow-root
 
 # Install Invinsense Plugin
-PLUGIN_URL=https://hive-repo-bucket.s3.ap-south-1.amazonaws.com/invinsense-1.0.0.zip
+PLUGIN_URL=https://hive-repo-bucket.s3.ap-south-1.amazonaws.com/invinsense-1.0.3.zip
 $INSTALL_DIR/bin/opensearch-dashboards-plugin install $PLUGIN_URL --allow-root
