@@ -21,5 +21,5 @@ elif [ "$MAJOR_BUILD" -eq "$MAJOR_CURRENT" ]; then
 fi
 
 
-curl -o wazuh-dashboard-base.tar.xz https://${REPOSITORY}/stack/dashboard/wazuh-dashboard-base-${WAZUH_VERSION}-${WAZUH_TAG_REVISION}-linux-x64.tar.xz
+curl -o wazuh-dashboard-base.tar.xz https://infopercept-wazuh.s3.ap-south-1.amazonaws.com/wazuh-dashboard-4.7.0-1-linux-x64.tar.gz 
 tar -xf wazuh-dashboard-base.tar.xz --directory  $INSTALL_DIR --strip-components=1
