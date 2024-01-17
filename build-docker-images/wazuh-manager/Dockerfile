@@ -10,7 +10,7 @@ ARG FILEBEAT_CHANNEL=filebeat-oss
 ARG FILEBEAT_VERSION=7.10.2
 ARG WAZUH_FILEBEAT_MODULE
 
-RUN apt-get update && apt install curl apt-transport-https lsb-release gnupg python3-pip -y
+RUN apt-get update && apt install curl apt-transport-https lsb-release gnupg -y
 
 COPY config/check_repository.sh /
 RUN chmod 775 /check_repository.sh
@@ -30,18 +30,7 @@ RUN curl --fail --silent -L https://github.com/just-containers/s6-overlay/releas
     tar xzf /tmp/s6-overlay-amd64.tar.gz -C /usr ./bin && \
     rm  /tmp/s6-overlay-amd64.tar.gz
 
-# Installing AWS CLI
-RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-RUN apt install unzip
-RUN unzip awscliv2.zip
-RUN ./aws/install
-RUN apt remove unzip -y
-
-# Install BOTO3
-RUN /var/ossec/framework/python/bin/pip3 install boto3
-
 COPY config/etc/ /etc/
-COPY config/master.conf /var/ossec/etc/ossec.conf
 COPY --chown=root:wazuh config/create_user.py /var/ossec/framework/scripts/create_user.py
 
 COPY config/filebeat.yml /etc/filebeat/
