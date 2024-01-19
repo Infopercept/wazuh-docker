@@ -23,8 +23,8 @@ fi
 
 WAZUH_APP=https://infopercept-wazuh.s3.ap-south-1.amazonaws.com/wazuh.zip
 # Install Wazuh App
-$INSTALL_DIR/bin/opensearch-dashboards-plugin install $WAZUH_APP --allow-root
+#$INSTALL_DIR/bin/opensearch-dashboards-plugin install $WAZUH_APP --allow-root
 
 # Install Invinsense Plugin
 PLUGIN_URL=https://hive-repo-bucket.s3.ap-south-1.amazonaws.com/invinsense-1.0.4.zip
-$INSTALL_DIR/bin/opensearch-dashboards-plugin install $PLUGIN_URL --allow-root
+#$INSTALL_DIR/bin/opensearch-dashboards-plugin install $PLUGIN_URL --allow-root

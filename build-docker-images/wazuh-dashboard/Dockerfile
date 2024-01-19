@@ -13,6 +13,7 @@ RUN apt-get update && apt install curl libcap2-bin xz-utils -y
 RUN mkdir -p $INSTALL_DIR
 
 # Download and extract Wazuh dashboard base
+COPY config/wazuh-dashboard-base.tar.xz .
 COPY config/dl_base.sh .
 RUN bash dl_base.sh
 
