@@ -10,7 +10,7 @@ services:
         WAZUH_TAG_REVISION: ${WAZUH_TAG_REVISION}
         FILEBEAT_TEMPLATE_BRANCH: ${FILEBEAT_TEMPLATE_BRANCH}
         WAZUH_FILEBEAT_MODULE: ${WAZUH_FILEBEAT_MODULE}
-    image: wazuh/wazuh-manager:${WAZUH_IMAGE_VERSION}
+    image: infopercept/wazuh-manager:${WAZUH_IMAGE_VERSION}
     hostname: wazuh.manager
     restart: always
     ports:
@@ -42,7 +42,7 @@ services:
       args:
         WAZUH_VERSION: ${WAZUH_VERSION}
         WAZUH_TAG_REVISION: ${WAZUH_TAG_REVISION}
-    image: wazuh/wazuh-worker:${WAZUH_IMAGE_VERSION}
+    image: infopercept/wazuh-worker:${WAZUH_IMAGE_VERSION}
     hostname: wazuh.worker
     restart: always
     ports:
@@ -74,7 +74,7 @@ services:
       args:
         WAZUH_VERSION: ${WAZUH_VERSION}
         WAZUH_TAG_REVISION: ${WAZUH_TAG_REVISION}
-    image: wazuh/wazuh-indexer:${WAZUH_IMAGE_VERSION}
+    image: infopercept/wazuh-indexer:${WAZUH_IMAGE_VERSION}
     hostname: wazuh.indexer
     restart: always
     ports:
@@ -96,7 +96,7 @@ services:
         WAZUH_VERSION: ${WAZUH_VERSION}
         WAZUH_TAG_REVISION: ${WAZUH_TAG_REVISION}
         WAZUH_UI_REVISION: ${WAZUH_UI_REVISION}
-    image: wazuh/wazuh-dashboard:${WAZUH_IMAGE_VERSION}
+    image: infopercept/wazuh-dashboard:4.7.2-abacus
     hostname: wazuh.dashboard
     restart: always
     ports:
